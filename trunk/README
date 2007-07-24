@@ -1,0 +1,35 @@
+django-profile-images
+=====================
+
+Installing
+==========
+
+To use django-profile-images in your project, copy the 'profileimages' 
+folder somewhere on your path (usually inside your application 
+directory). You will need to add this application to your 
+INSTALLED_APPS settings variable.
+
+You will also need to define the following settings variables:
+
+# the directory for uploaded profile images
+PROFILE_IMAGE_UPLOAD_DIR = 'img/profiles/'
+
+# the maximum size for uploaded images in kilobytes
+PROFILE_IMAGE_MAX_SIZE = 64
+
+# the default profile image for users who haven't uploaded one yet
+PROFILE_IMAGE_DEFAULT = 'img/profiles/default.png'
+
+Using
+=====
+
+You'll probably want to define a template called 'profileimages/image_upload.html'
+which has your upload form. A sample is included to get you started.
+
+You can also get a user's profile image in a template by doing:
+
+{% load profile_images %}
+
+{% profile_image user 64x64 %}
+
+This will include an appropriate image tag for the user's profile image.
