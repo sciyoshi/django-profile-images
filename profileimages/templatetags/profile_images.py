@@ -1,10 +1,10 @@
-from PIL import os
+import os
 
 from django.db.models import get_model
 from django.template import Library, Node, TemplateSyntaxError, resolve_variable
 from django.conf import settings
 
-import Image
+from PIL import Image
 
 from profileimages.models import ProfileImage
 
