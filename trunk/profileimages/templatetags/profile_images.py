@@ -1,4 +1,4 @@
-import os
+from PIL import os
 
 from django.db.models import get_model
 from django.template import Library, Node, TemplateSyntaxError, resolve_variable
