@@ -8,9 +8,7 @@ from models import ProfileImage
 @login_required
 def upload_profile_image(request):
     if request.method == 'POST':
-        data = request.POST.copy()
-        data.update(request.FILES)
-        form = ProfileImageForm(data)
+        form = ProfileImageForm(request.POST, request.FILES)
         if form.is_valid():
             ProfileImage.objects.save_from_info(request.user, form.cleaned_data['image'])
             return HttpResponseRedirect('/')
