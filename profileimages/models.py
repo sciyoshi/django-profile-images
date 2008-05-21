@@ -7,6 +7,7 @@ except ImportError:
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.admin import site
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models import signals
@@ -19,9 +20,6 @@ class ProfileImage(models.Model):
     image = models.ImageField(upload_to=settings.PROFILE_IMAGE_UPLOAD_DIR, null=True)
 
     objects = ProfileImageManager()
-
-    class Admin:
-        pass
 
     def __str__(self):
         return '%s\'s Profile Image' % self.user
@@ -40,3 +38,5 @@ def create_default_profile_image(sender, instance):
         profile.save()
 
 dispatcher.connect(create_default_profile_image, sender=User, signal=signals.post_save)
+
+site.register(ProfileImage)

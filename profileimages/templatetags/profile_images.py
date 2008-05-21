@@ -25,7 +25,10 @@ class ProfileImageNode(Node):
         except:
             return
         x, y = [int(x) for x in self.size.split('x')]
-        basename, format = image.image.rsplit('.', 1)
+        if hasattr(image.image, 'filename'):
+            basename, format = image.image.filename.rsplit('.', 1)
+        else:
+            basename, format = image.image.rsplit('.', 1)
         miniature = basename + '_' + self.size + '.' + format
         miniature_filename = os.path.join(settings.MEDIA_ROOT, miniature)
         miniature_url = os.path.join(settings.MEDIA_URL, miniature)
