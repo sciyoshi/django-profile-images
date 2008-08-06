@@ -31,7 +31,7 @@ class ProfileImage(models.Model):
         if save:
             self.save()
 
-def create_default_profile_image(sender, instance):
+def create_default_profile_image(sender, instance, **kwargs):
     profile, created = ProfileImage.objects.get_or_create(user=instance)
     if created:
         profile.image = settings.PROFILE_IMAGE_DEFAULT
